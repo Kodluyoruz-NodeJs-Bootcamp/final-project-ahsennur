@@ -1,0 +1,91 @@
+<%- include('partials/_header'); %>
+
+<%- include('partials/_navigation'); %>
+	
+	        <div class="container bg-primary border">
+            <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12">
+                    <div class="contact_form">
+                        <div id="message"></div>
+                        <div class="offset-1 col-lg-10 col-md-10 col-sm-10">
+                            <% if (flashMessages) { %>
+
+                                <% if (flashMessages.success) { %>
+                                    <div class="alert alert-success">
+                                        <%= flashMessages.success %>
+                                    </div>
+        
+                                <% } else if (flashMessages.error) { %>
+                                    <div class="alert alert-danger">
+                                        <%= flashMessages.error %>
+                                    </div>
+                                <% } %>
+        
+                            <% } %>
+                        </div>
+                        <form method="POST" action="/login">
+                            <!-- login_wrapper -->
+                            <div>
+                                <div class="row text-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"> 
+                                        <a href="/auth/facebook" class="btn btn-primary facebook"> 
+                                            <span>Login with Facebook</span> 
+                                        <i class="fa fa-facebook"></i> 
+                                        </a> 
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"> 
+                                        <a href="/auth/google" class="btn btn-primary google-plus">
+                                            <span>Login with Google</span>
+                                        <i class="fa fa-google-plus"></i> 
+                                        </a> 
+                                    </div>
+                                </div>
+                                <br>
+                                <h4 class="text-white text-center">-------- or use your account --------</h4>
+                                <div class="formsix-pos">
+                                    <div class="form-group i-email"> 
+                                        <input type="email" name="email" class="form-control" required="true" id="email" placeholder="Email Address *"> 
+                                    </div>
+                                </div>
+                                <div class="formsix-e">
+                                    <div class="form-group i-password"> 
+                                        <input type="password" name="password" class="form-control" required="true" id="password" placeholder="Password *"> 
+                                    </div>
+                                </div>
+<!--                    <div class="login_remember_box"> <label class="control control--checkbox">Remember me <input type="checkbox"> <span class="control__indicator"></span> </label> <a href="#" class="forget_password"> Forgot Password </a> </div>-->
+<!--                          <div class="text-center"> <a href="#" class="btn btn-primary login_btn"> Login </a> -->
+                                <button type="submit" value="login" id="submit" class="btn btn-light btn-radius btn-brd grd1 btn-block">Login</button>
+                                </div>
+<!--                    <div class="login_message">
+                        <p>Don’t have an account ? <a href="#"> Sign up </a> </p>
+                    </div>-->
+                            </div> <!-- /.login_wrapper-->
+                        </form>
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+	 </div><!-- end container -->
+	
+     <%- include('partials/_footer'); %>
+
+     <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '354698376480584354698376480584',
+            cookie     : true,
+            xfbml      : true,
+            version    : '3.2'
+          });
+            
+          FB.AppEvents.logPageView();   
+            
+        };
+      
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "https://connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+      </script>
