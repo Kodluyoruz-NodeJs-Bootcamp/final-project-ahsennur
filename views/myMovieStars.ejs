@@ -1,0 +1,171 @@
+<%- include('partials/_header'); %>
+
+	<%- include('partials/_navigation'); %>
+
+		<% if(user) { %>
+			<div class="all-title-box">
+				<div class="container text-center">
+					<h1>My Movie Stars</h1>
+				</div>
+			</div>
+
+			<div id="overviews" class="section wb">
+				<div class="container">
+					<div class="row row-fluid">
+						<div class="offset-1 col-lg-10 col-md-10 col-sm-10">
+						<% if (flashMessages) { %>
+
+							<% if (flashMessages.success) { %>
+								<div class="alert alert-success">
+									<%= flashMessages.success %>
+								</div>
+	
+							<% } else if (flashMessages.error) { %>
+								<div class="alert alert-danger">
+									<%= flashMessages.error %>
+								</div>
+							<% } %>
+	
+						<% } %>
+					</div>
+
+						<!-- Modal Button -->
+						<div class="col-lg-12 text-center ">
+							<button class="btn btn-lg btn-warning rounded-0 text-white" href="#"
+								data-toggle="modal" data-target="#addMovieStar">
+								<span>Add Movie Star</span>
+							</button>
+						</div>
+
+						<div class="col-lg-12 blog-post-single">
+						</div><!-- end col -->
+					</div><!-- end row -->
+					<div class="row mt-5">
+
+						<% for (let i=0; i< movieStars.length; i++) { %>
+						<div class="col-lg-6 col-md-6 col-12 border">
+							<div class="movieStar-item mb-5">
+								<div class="image-blog">
+									<img src="/images/no-picture-stars.jpg" alt="" class="img-fluid">
+								</div>
+								<div class="movieStar-br">
+									<div class="movieStar-title">
+										<h2><b>Name:&nbsp;</b><%= movieStars[i].name %></h2>
+									</div>
+									<div class="movieStar-desc">
+										<p><b>Surname:&nbsp;</b><%= movieStars[i].surname %> </p>
+									</div>
+									<div class="clearfix">
+										<ul style="list-style-type: none;">
+											<li style="float: right;"><button class="btn btn-primary rounded-0 text-white"
+												data-toggle="modal" data-target="#updateMovieStar<%= movieStars[i].id %>"
+												><span>Update</span></button></li>
+
+											<% if(!movieStars[i].isShared) { %>	
+
+											<li style="float: right;"><a href="/myMovieStars/<%= movieStars[i].id %>?_method=PATCH" 
+												onclick="return confirm('THE MOVIE STAR WILL BE SHARED WITH OTHER USERS, ARE YOU SURE?')"
+												class="btn btn-primary rounded-0 text-white"><span>Share</span></a></li>
+
+											<% } else{%>	
+												<li style="float: right;"><a href="" 
+													class="btn btn-danger rounded-0 text-white"><span>Shared</span></a></li>
+											<% } %>	
+											<li style="float: right;"><a href="/myMovieStars/<%= movieStars[i].id %>?_method=DELETE" 
+												onclick="return confirm('MOVIE STAR WILL BE DELETED, ARE YOU SURE?')"
+												class="btn btn-danger rounded-0 text-white"><span>Delete</span></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div><!-- end col -->
+
+<!-- UPDATE Modal -->
+<div class="modal fade" id="updateMovieStar<%= movieStars[i].id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-body customer-box">
+	<!-- Tab panes -->
+	<div class="tab-content">
+		<div class="tab-pane active" id="Login">
+			<form method="POST" action="/myMovieStars/<%= movieStars[i].id %>?_method=PUT" class="form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-12">
+						<input type="text" name="name" value="<%= movieStars[i].name %>" class="form-control"  placeholder="MovieStar Name">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12">
+						<input type="text" name="surname" value="<%= movieStars[i].surname %>" class="form-control"  placeholder="MovieStar Surname">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-10">
+						<button type="submit" class="btn btn-light btn-radius btn-brd grd1">
+							Submit
+						</button>
+						<button type="submit" class="btn btn-light btn-radius btn-brd grd1"
+							data-dismiss="modal" aria-hidden="true">
+							Cancel
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+
+						<% } %>
+
+					</div><!-- end row -->
+				</div><!-- end container -->
+			</div><!-- end section -->
+
+			<!-- ADD Modal -->
+			<div class="modal fade" id="addMovieStar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+			<div class="modal-body customer-box">
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="Login">
+						<form method="POST" action="/myMovieStars" class="form-horizontal">
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="text" name="name" class="form-control"  placeholder="MovieStar Name" required>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="text" name="surname" class="form-control"  placeholder="MovieStar Surname" required>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-10">
+									<button type="submit" class="btn btn-light btn-radius btn-brd grd1">
+										Submit
+									</button>
+									<button type="submit" class="btn btn-light btn-radius btn-brd grd1"
+										data-dismiss="modal" aria-hidden="true">
+										Cancel
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			</div>
+			</div>
+			</div>
+
+			
+		<% } %>
+
+<%- include('partials/_footer'); %>

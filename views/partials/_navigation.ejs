@@ -1,0 +1,52 @@
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand text-white">Movies And Stars</a>
+				  </div>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-host">
+					  <!-- Navbar text-->
+					  <% if (typeof(user) !== 'undefined') {%>   
+  					<span class="navbar-text text-white">
+					User:&nbsp;<%= user.username %>
+  					</span>
+					  <% } %>
+					  <ul class="navbar-nav ml-auto">
+						<% if (typeof(user) !== 'undefined') {%>   
+							<li class="nav-item <%= page_name ==='movies' && 'active' %>"><a class="nav-link" href="/movies">Movies</a></li>
+						<li class="nav-item <%= page_name ==='moviStars' && 'active' %>"><a class="nav-link" href="/movieStars">Stars</a></li>
+						<!-- Dropdown -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+								Dashboard
+							</a>
+							<div class="dropdown-menu">
+							<a class="dropdown-item" href="/myMovies">My Movies</a>
+							<a class="dropdown-item" href="/myMovieStars">My Stars</a>
+							</div>
+							</li>
+						<% } %>
+					</ul>
+
+					<% if (typeof(user) === 'undefined') {%>  
+					<ul class="nav navbar-nav navbar-right">
+ 						<li><a class="hover-btn-new log <%= page_name ==='register' && 'orange' %>" href="/register"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span></a></li>
+                    </ul>
+					<% } %>
+
+					<% if (typeof(user) !== 'undefined') {%>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a class="hover-btn-new log mr-2" href="/logout"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span></a></li>
+					</ul>
+					<% }%>
+				</div>
+			</div> 
+		</nav>
+	</header>
+	<!-- End header -->
