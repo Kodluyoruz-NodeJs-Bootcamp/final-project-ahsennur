@@ -60,9 +60,9 @@ CLIENT_ID and CLIENT_SECRET keys should be obtained from {https://developers.goo
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 
-![][login.jpg]
+![](https://github.com/Kodluyoruz-NodeJs-Bootcamp/final-project-ahsennur/blob/main/login.jpg)
 
-![][movies.jpg]
+![](https://github.com/Kodluyoruz-NodeJs-Bootcamp/final-project-ahsennur/blob/main/movies.jpg)
 
-![][movies.jpg]
+![](https://github.com/Kodluyoruz-NodeJs-Bootcamp/final-project-ahsennur/blob/main/myMovies.jpg)
 
